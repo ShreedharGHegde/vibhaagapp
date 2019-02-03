@@ -14,7 +14,7 @@ class LogIn extends Component {
     }
 
     loginHandler() {
-        this.props.loginHandler(this.state.password.length)
+        this.props.loginHandler(this.state.email, this.state.password)
     }
     
     buttonHandler() {

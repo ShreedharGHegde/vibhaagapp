@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-import { View, Dimensions, Text } from "react-native";
+import axios from "axios";
+import { View, Dimensions, Text, AsyncStorage } from "react-native";
 import QRCodeScanner from "react-native-qrcode-scanner";
 import Icon from "react-native-vector-icons/Ionicons";
 import * as Animatable from "react-native-animatable";
@@ -11,9 +11,22 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 console.disableYellowBox = true;
 
 class Scanner extends Component {
-  onSuccess(e) {
 
-    this.props.logoutButtonHandler()
+  onSuccess(e) {
+    //for every post request, token is fetched from local storage of app
+     AsyncStorage.getItem("token", (err, token) => {return token})
+    .then((token)=>{
+      axios
+      .post(
+        "http://192.168.0.107:9001/check",
+        { data: e.data },{ headers:{auth:JSON.parse(token)}})
+      .then(res => {
+        //verification result is received here and message is displayed to user(scan success full or failure)
+        console.log(res)
+      });
+    })
+    //if verification is success full call logoutButtonHandler() else ask to scan again
+    // this.props.logoutButtonHandler()
   }
 
   makeSlideOutTranslation(translationType, fromValue) {

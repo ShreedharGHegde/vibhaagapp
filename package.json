@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@nitrog7/react-native-camera": "^0.3.9",
+    "axios": "^0.18.0",
     "qr-code-scanner": "^1.0.5",
     "react": "16.6.3",
     "react-native": "^0.57.8",
