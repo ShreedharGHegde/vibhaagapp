@@ -10,7 +10,9 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 
 console.disableYellowBox = true;
 
+
 class Scanner extends Component {
+
 
   onSuccess(e) {
     //for every post request, token is fetched from local storage of app
@@ -22,11 +24,10 @@ class Scanner extends Component {
         { data: e.data },{ headers:{auth:JSON.parse(token)}})
       .then(res => {
         //verification result is received here and message is displayed to user(scan success full or failure)
-        console.log(res)
+        
+        this.props.messageHandler(res.data.success)
       });
     })
-    //if verification is success full call logoutButtonHandler() else ask to scan again
-    // this.props.logoutButtonHandler()
   }
 
   makeSlideOutTranslation(translationType, fromValue) {

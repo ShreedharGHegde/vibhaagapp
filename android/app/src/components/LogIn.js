@@ -10,21 +10,13 @@ class LogIn extends Component {
             password: '',
         }
 
-        this.buttonHandler = this.buttonHandler.bind(this)
+        this.loginHandler = this.loginHandler.bind(this)
     }
 
     loginHandler() {
-        this.props.loginHandler(this.state.email, this.state.password)
-    }
-    
-    buttonHandler() {
-        return(
-                <Button 
-                    title="Log in" 
-                    style={{ alignSelf:'stretch' }} 
-                    onPress={this.loginHandler.bind(this)}
-                />
-            )
+        if(this.state.email && this.state.password){
+            this.props.loginHandler(this.state.email, this.state.password)
+        }
     }
     
     render() {
@@ -45,9 +37,11 @@ class LogIn extends Component {
                     onChangeText={password => this.setState({ password})}
                     value={this.state.password}                    
                 />
-                <View>
-                    {this.buttonHandler()}
-                </View>
+                 <Button 
+                    title="Log in" 
+                    style={{ alignSelf:'stretch' }} 
+                    onPress={this.loginHandler.bind(this)}
+                />
             </View>
         )
     }
