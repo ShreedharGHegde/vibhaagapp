@@ -13,9 +13,11 @@
     "react": "16.6.3",
     "react-native": "^0.57.8",
     "react-native-animatable": "^1.3.1",
-    "react-native-camera": "^1.9.2",
+    "react-native-camera": "^1.13.1",
+    "react-native-notifications": "^1.2.51",
     "react-native-qrcode-scanner": "^1.1.2",
-    "react-native-vector-icons": "^6.2.0"
+    "react-native-vector-icons": "^6.2.0",
+    "react-navigation": "^1.0.0-beta.23"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

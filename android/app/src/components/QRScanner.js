@@ -11,21 +11,34 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 console.disableYellowBox = true;
 
 
-class Scanner extends Component {
+class QRScanner extends Component {
+  
+  constructor() {
+    super()
+
+    this.state = {
+      show: 'QRScanner'
+    }
+
+  }
+
+  
 
   onSuccess(e) {
     console.log({data:e.data, time:Date()} )
     //for every post request, token is fetched from local storage of app
      AsyncStorage.getItem("token", (err, token) => {return token})
     .then((token)=>{
+      console.log(token)
       axios
       .post(
-        "http://192.168.43.29:9001/check",
+        "http://192.168.0.107:9000/check",
         { data: e.data },{ headers:{auth:JSON.parse(token)}})
       .then(res => {
         //verification result is received here and message is displayed to user(scan success full or failure)
-        
-        this.props.messageHandler(res.data.success)
+        this.setState({
+          show:'Message'
+        })
       });
     })
   }
@@ -42,7 +55,7 @@ class Scanner extends Component {
   }
 
   render() {
-    return (
+    return ( this.state.show == 'QRScanner' ?
       <QRCodeScanner
         showMarker
         onRead={this.onSuccess.bind(this)}
@@ -82,8 +95,8 @@ class Scanner extends Component {
 
             <View style={styles.bottomOverlay} />
           </View>
-        }
-      />
+        } 
+      /> : <Text>success</Text>
     );
   }
 }
@@ -148,4 +161,4 @@ const styles = {
   }
 };
 
-export default Scanner;
+export default QRScanner;
