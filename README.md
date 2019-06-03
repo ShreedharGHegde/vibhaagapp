@@ -11,7 +11,3 @@ An all in one college management Software as A Service (SaaS) built on the Mongo
 
 # Authors
 * Shreedhar
-* Aadarsha
-* Sudhanva
-* Karthik
-* Harsha
